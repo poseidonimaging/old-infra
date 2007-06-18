@@ -1,0 +1,14 @@
+<VirtualHost *:80>
+        ServerName __DOMAIN__
+        ServerAlias www.__DOMAIN__
+        ServerAdmin hostmaster@poseidonimaging.com
+        DocumentRoot "__DOCROOT__"
+
+        <Directory __DOCROOT__>
+                Order allow,deny
+                Allow from all
+                AllowOverride all
+                Options All
+                DirectoryIndex index.htm index.html index.php index.php3
+        </Directory>
+</VirtualHost>
