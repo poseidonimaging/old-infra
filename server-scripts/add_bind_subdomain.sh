@@ -16,6 +16,7 @@ PARENT="$1"
 SUBDOMAIN="$2"
 DOMAIN="$3"
 
+# Misc constants
 SERVER_IPADDR="65.38.25.234"
 
 # check to see if the zone exists - if not, abort!
@@ -41,19 +42,8 @@ gawk -f update_serial.awk /tmp/out.subdomain1 > /tmp/out.subdomain2
 cp -f /tmp/out.subdomain2 "/chroot/dns/var/bind/pri/$PARENT/$DOMAIN.zone"
 
 
-# TODO: move this to a script (bind_sanity_check.sh?)
-
-# permissions (rwxrwxr-x)
-chmod 775 "/chroot/dns/var/bind/pri/$PARENT/$DOMAIN.zone"
-chown named:named "/chroot/dns/var/bind/pri/$PARENT/$DOMAIN.zone"
-
-# verify permissions for parent include file
-chmod 775 "/chroot/dns/etc/bind/$PARENT.inc.conf"
-chown named:named "/chroot/dns/etc/bind/$PARENT.inc.conf"
-
-# double check permissions on the parent folder to make sure recursion is allowed
-chmod 777 "/chroot/dns/var/bind/pri/$PARENT"
-chown named:named "/chroot/dns/var/bind/pri/$PARENT"
+# Run BIND sanity check
+sh /usr/local/posima/bind_sanity_check.sh $DOMAIN $PARENT
 
 echo " * Subdomain $SUBDOMAIN.$DOMAIN added to $PARENT."
 
