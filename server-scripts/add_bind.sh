@@ -32,7 +32,7 @@ cat "/tmp/out.bindinc2" >> "/chroot/dns/etc/bind/$PARENT.inc.conf"
 # Perform sanity check
 sh /usr/local/posima/bind_sanity_check.sh $DOMAIN $PARENT
 
-echo " * Domain $domain added to $parent."
+echo " * Domain $DOMAIN added to $PARENT."
 
 # reload named
 /etc/init.d/named reload

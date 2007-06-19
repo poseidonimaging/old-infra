@@ -2,13 +2,13 @@
 
 # $Id$
 #
-# add_bind_subdomain.sh
-# Add a subdomain to a domain in BIND
+# del_bind_subdomain.sh
+# Deletes a subdomain in BIND
 
 # TODO: Integrate SVN so that a bad add can be rolled back simply.
 
 if [ $# != 3 ]; then
-        echo "Usage: add_bind_subdomain.sh parent subdomain domain"
+        echo "Usage: del_bind_subdomain.sh parent subdomain domain"
         exit 1
 fi
 
@@ -28,20 +28,21 @@ if [ ! -f "/chroot/dns/var/bind/pri/$PARENT/$DOMAIN.zone" ]; then
         exit 2
 fi
 
-# Make a copy of the zone file so we're working with a temp file until the
-# last moment.
-cp -f "/chroot/dns/var/bind/pri/$PARENT/$DOMAIN.zone" /tmp/out.subdomain1
+# Comment-out the subdomain line (s/^subdomain/; subdomain/)
+sed -e 's/^'$SUBDOMAIN'/; deleted - '$SUBDOMAIN'/' "/chroot/dns/var/bind/pri/$PARENT/$DOMAIN.zone" > /tmp/out.subdomain1
 
-# Add a subdomain line.
-echo "; subdomain added on "`date "+%Y-%m-%d %H:%M:%S"` >> /tmp/out.subdomain1
-echo "$SUBDOMAIN            IN      A       $SERVER_IPADDR" >> "/tmp/out.subdomain1"
+# To prevent against sed eating things...
+if [ $? != 0 ]; then
+	echo "!!! sed encountered a fatal error. This script will"
+	echo "!!! not continue."
+	exit 3
+fi
 
 # Update the serial number (thanks anonymous dude from some forum)
 gawk -f update_serial.awk /tmp/out.subdomain1 > /tmp/out.subdomain2
 
 # Copy the zone back where it came from.
 cp -f /tmp/out.subdomain2 "/chroot/dns/var/bind/pri/$PARENT/$DOMAIN.zone"
-
 
 # Run BIND sanity check
 sh /usr/local/posima/bind_sanity_check.sh $DOMAIN $PARENT
