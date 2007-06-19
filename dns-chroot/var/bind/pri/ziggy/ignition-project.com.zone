@@ -1,0 +1,34 @@
+$TTL 3h
+@       IN      SOA     prometheus.poseidonimaging.com. hostmaster.poseidonimaging.com.  (
+                                      2007012200 ; Serial
+                                      28800	 ; Refresh
+                                      14400	 ; Retry
+                                      1w	 ; Expire - 1 week
+                                      86400 )	 ; Minimum
+		IN      NS      prometheus.poseidonimaging.com.
+		IN	A	65.38.25.234
+                IN      MX      0 prometheus.poseidonimaging.com.
+                IN      TXT     "v=spf1 a mx include:gmail.com ?all"
+localhost	IN	A	127.0.0.1
+www		IN	A	65.38.25.234
+svn		IN	A	65.38.25.234
+beta		IN	A	65.38.25.234
+gallery		IN	A	65.38.25.234
+g2		IN	A	65.38.25.234
+exinferis	IN	A	65.38.25.234
+music		IN	A	65.38.25.234
+svn-private	IN	A	65.38.25.234
+techmania	IN	A	65.38.25.234
+war		IN	A	65.38.25.234
+www.svn		IN	A	65.38.25.234
+www.beta	IN	A	65.38.25.234
+www.gallery	IN	A	65.38.25.234
+www.g2		IN	A	65.38.25.234
+www.exinferis	IN	A	65.38.25.234
+www.music	IN	A	65.38.25.234
+www.svn-private	IN	A	65.38.25.234
+www.techmania	IN	A	65.38.25.234
+www.war		IN	A	65.38.25.234
+
+; CNAMEs
+intranet	IN	CNAME	 ploopie.myftp.biz.

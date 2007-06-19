@@ -1,0 +1,13 @@
+$TTL 3h
+@       IN      SOA     prometheus.poseidonimaging.com. hostmaster.poseidonimaging.com.  (
+                                      2007011300 ; Serial
+                                      28800	 ; Refresh
+                                      14400	 ; Retry
+                                      1w	 ; Expire - 1 week
+                                      86400 )	 ; Minimum
+		IN      NS      prometheus.poseidonimaging.com.
+		IN	A	65.38.25.234
+                IN      MX      0 prometheus.poseidonimaging.com.
+                IN      TXT     "v=spf1 a ?all"
+localhost	IN	A	127.0.0.1
+www		IN	A	65.38.25.234

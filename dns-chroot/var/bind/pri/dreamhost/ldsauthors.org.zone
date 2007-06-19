@@ -1,0 +1,15 @@
+$TTL 3h
+@       IN      SOA     prometheus.poseidonimaging.com. hostmaster.poseidonimaging.com.  (
+                                      2007011000 ; Serial
+                                      1h	 ; Refresh
+                                      3m	 ; Retry
+                                      1w	 ; Expire - 1 week
+                                      3h )	 ; Negative TTL
+		IN      NS      prometheus.poseidonimaging.com.
+		IN	NS	prometheus2.poseidonimaging.com.
+		IN	A	65.38.25.234
+		IN	MX	0 prometheus.poseidonimaging.com.
+		IN	TXT	"v=spf1 a ?all"
+localhost	IN	A	127.0.0.1
+www		IN	A	65.38.25.234
+mail		IN	A	65.38.25.234
