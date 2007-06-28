@@ -1,6 +1,6 @@
 $TTL 3h
 @       IN      SOA     prometheus.poseidonimaging.com. hostmaster.poseidonimaging.com.  (
-                                      2007012200 ; Serial
+ 2007062801   ; Serial     
                                       28800	 ; Refresh
                                       14400	 ; Retry
                                       1w	 ; Expire - 1 week
@@ -32,3 +32,5 @@ www.war		IN	A	65.38.25.234
 
 ; CNAMEs
 intranet	IN	CNAME	 ploopie.myftp.biz.
+; subdomain added on 2007-06-28 13:52:42
+bugs            IN      A       65.38.25.234
