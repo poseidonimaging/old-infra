@@ -37,7 +37,12 @@ echo "; subdomain added on "`date "+%Y-%m-%d %H:%M:%S"` >> /tmp/out.subdomain1
 echo "$SUBDOMAIN            IN      A       $SERVER_IPADDR" >> "/tmp/out.subdomain1"
 
 # Update the serial number (thanks anonymous dude from some forum)
-gawk -f update_serial.awk /tmp/out.subdomain1 > /tmp/out.subdomain2
+gawk -f /usr/local/posima/update_serial.awk /tmp/out.subdomain1 > /tmp/out.subdomain2
+
+if [ $? != 0 ]; then
+	echo "!!! gawk encountered an error; subdomain addition will halt."
+	exit 3
+fi
 
 # Copy the zone back where it came from.
 cp -f /tmp/out.subdomain2 "/chroot/dns/var/bind/pri/$PARENT/$DOMAIN.zone"
